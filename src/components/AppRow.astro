@@ -1,0 +1,48 @@
+---
+import type { App } from '../lib/apps';
+import { slugify } from '../lib/apps';
+
+interface Props {
+  app: App;
+  note?: string;
+  searchable?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+const { app, note, searchable = false, headingLevel: Heading = 'h3' } = Astro.props;
+const d = app.data;
+const search = [d.title, d.description, d.category, d.license, d.alternativeTo.join(' ')].join(' ');
+---
+
+<li
+  class="app-row"
+  data-search={searchable ? search : undefined}
+  data-category={searchable ? d.category : undefined}
+  data-selfhost={searchable ? String(d.selfHostable) : undefined}
+  data-social={searchable ? String(d.revenueSharing) : undefined}
+>
+  <div class="app-row__main">
+    <Heading class="app-row__title"><a href={`/apps/${app.id}/`}>{d.title}</a></Heading>
+    <p>{note ?? d.description}</p>
+  </div>
+  <div class="app-row__replaces">
+    {d.alternativeTo.length > 0 && (
+      <>
+        <span class="field-label">Reemplaza</span>
+        <p>
+          {d.alternativeTo.map((name, i) => (
+            <>
+              {i > 0 && ', '}
+              <a href={`/alternativas-a/${slugify(name)}/`}>{name}</a>
+            </>
+          ))}
+        </p>
+      </>
+    )}
+  </div>
+  <ul class="app-row__meta">
+    <li>{d.license}</li>
+    {d.selfHostable && <li>Autoalojable</li>}
+    {d.revenueSharing && <li class="tag-social">Economía social</li>}
+    {d.watchOut && <li class="tag-note">Con advertencia</li>}
+  </ul>
+</li>

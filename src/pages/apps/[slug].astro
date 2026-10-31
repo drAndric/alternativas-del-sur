@@ -1,0 +1,75 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import AppRow from '../../components/AppRow.astro';
+import { categoryMeta, getApps, slugify, type App } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return apps.map((app) => ({ params: { slug: app.id }, props: { app, apps } }));
+}
+
+const { app, apps } = Astro.props as { app: App; apps: App[] };
+const d = app.data;
+const { Content } = await render(app);
+const related = apps.filter((a) => a.data.category === d.category && a.id !== app.id).slice(0, 3);
+---
+
+<Base title={d.title} description={d.description}>
+  <div class="page-head">
+    <h1>{d.title}</h1>
+    <p>{d.description}</p>
+    <div class="detail-actions">
+      <a class="button" href={d.websiteUrl}>Visitar el sitio</a>
+      <a class="button button--ghost" href={d.repoUrl}>Ver el código</a>
+    </div>
+  </div>
+  <div class="wrap detail-grid">
+    <div>
+      {d.alternativeTo.length > 0 && (
+        <>
+          <h2>Reemplaza a</h2>
+          <ul class="chips" style="margin-top:0.75rem">
+            {d.alternativeTo.map((name) => (
+              <li><a href={`/alternativas-a/${slugify(name)}/`}>{name}</a></li>
+            ))}
+          </ul>
+        </>
+      )}
+      <div class="detail-notes">
+        {d.watchOut && (
+          <aside class="callout">
+            <h2>A tener en cuenta</h2>
+            <p>{d.watchOut}</p>
+          </aside>
+        )}
+        {d.university && (
+          <aside class="callout callout--uni">
+            <h2>En la universidad</h2>
+            <p>{d.university.note}</p>
+            <p style="margin-top:0.5rem"><a href={`/universidades/#${slugify(d.university.area)}`}>{d.university.area}</a></p>
+          </aside>
+        )}
+      </div>
+      <div class="prose" style="margin-top:1.5rem"><Content /></div>
+    </div>
+    <dl class="facts">
+      <div><dt>Licencia</dt><dd>{d.license}</dd></div>
+      <div><dt>Quién lo controla</dt><dd>{d.governance}</dd></div>
+      <div><dt>Categoría</dt><dd><a href={`/categoria/${categoryMeta[d.category].slug}/`}>{d.category}</a></dd></div>
+      <div><dt>Servidor propio</dt><dd>{d.selfHostable ? 'Se puede instalar en un servidor propio' : 'No aplica o no es su uso principal'}</dd></div>
+      {d.revenueSharing && <div><dt>Economía social</dt><dd>Lo sostiene una cooperativa o reparte sus beneficios</dd></div>}
+    </dl>
+  </div>
+  {related.length > 0 && (
+    <section class="section wrap" aria-labelledby="relacionados">
+      <div class="section-head">
+        <h2 id="relacionados">Más en {d.category}</h2>
+        <a href={`/categoria/${categoryMeta[d.category].slug}/`}>Ver toda la categoría</a>
+      </div>
+      <ul class="app-list">
+        {related.map((a) => <AppRow app={a} />)}
+      </ul>
+    </section>
+  )}
+</Base>

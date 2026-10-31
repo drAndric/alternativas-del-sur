@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import AppRow from '../components/AppRow.astro';
+import { getApps, slugify } from '../lib/apps';
+import { universityAreas } from '../data/taxonomy';
+
+const apps = (await getApps()).filter((a) => a.data.university);
+const areas = universityAreas
+  .map((area) => ({ area, id: slugify(area), apps: apps.filter((a) => a.data.university?.area === area) }))
+  .filter((group) => group.apps.length > 0);
+
+const networks = [
+  { name: 'LA Referencia', url: 'https://www.lareferencia.info', text: 'Red latinoamericana que conecta repositorios de acceso abierto de la región.' },
+  { name: 'SciELO', url: 'https://scielo.org', text: 'Red de colecciones de revistas científicas en acceso abierto, nacida en América Latina.' },
+  { name: 'AmeliCA', url: 'https://www.amelica.org', text: 'Iniciativa de comunicación científica abierta y no comercial, impulsada desde la región.' },
+  { name: 'COAR', url: 'https://coar-repositories.org', text: 'Asociación internacional de repositorios, con guías y buenas prácticas.' },
+];
+---
+
+<Base title="Infraestructura abierta para universidades" description="Software libre para aulas virtuales, revistas, repositorios, bibliotecas y servicios del campus, organizado por área.">
+  <div class="page-head page-head--anil">
+    <h1>Infraestructura abierta para universidades</h1>
+    <p>
+      Aulas, revistas, repositorios y bibliotecas sostienen la vida académica. Si dependen de licencias y plataformas ajenas, la institución pierde margen de decisión sobre su presupuesto, sus datos y su producción científica. Estos {apps.length} proyectos permiten recuperarlo.
+    </p>
+    <ul class="area-nav">
+      {areas.map((g) => <li><a href={`#${g.id}`}>{g.area}</a></li>)}
+    </ul>
+  </div>
+
+  {areas.map((g) => (
+    <section class="section wrap" aria-labelledby={g.id}>
+      <div class="section-head">
+        <h2 id={g.id}>{g.area}</h2>
+      </div>
+      <ul class="app-list">
+        {g.apps.map((app) => <AppRow app={app} note={app.data.university?.note} />)}
+      </ul>
+    </section>
+  ))}
+
+  <section class="section wrap" aria-labelledby="migrar">
+    <div class="section-head"><h2 id="migrar">Cómo empezar una migración</h2></div>
+    <ol class="steps">
+      <li>
+        <h3>Haz el inventario</h3>
+        <p>Lista cada plataforma con su costo, fecha de renovación, quién la usa y quién tiene los datos.</p>
+      </li>
+      <li>
+        <h3>Empieza con un piloto</h3>
+        <p>Elige un servicio de bajo riesgo, como un repositorio temático o una revista, y mide cuánto trabajo técnico exige.</p>
+      </li>
+      <li>
+        <h3>Asegura la salida</h3>
+        <p>Antes de renovar un contrato, comprueba que puedes exportar tus datos completos en formatos abiertos.</p>
+      </li>
+      <li>
+        <h3>Comparte el costo</h3>
+        <p>Busca redes académicas y consorcios: mantener un servicio entre varias instituciones reduce el costo y la dependencia de una sola persona.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section wrap" aria-labelledby="redes">
+    <div class="section-head"><h2 id="redes">Redes para no hacerlo a solas</h2></div>
+    <ul class="networks">
+      {networks.map((n) => (
+        <li>
+          <h3><a href={n.url}>{n.name}</a></h3>
+          <p>{n.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

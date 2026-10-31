@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alternativas.desdeelsur.org/sitemap-index.xml

@@ -1,0 +1,43 @@
+---
+import Base from '../layouts/Base.astro';
+import AppRow from '../components/AppRow.astro';
+import { getApps, orderedCategories, plural } from '../lib/apps';
+
+const apps = await getApps();
+---
+
+<Base title="Directorio" description={`Busca entre ${apps.length} programas libres por nombre, categoría o por el programa privativo que quieres reemplazar.`}>
+  <div class="page-head">
+    <h1>Directorio</h1>
+    <p>Busca por nombre o por el programa que quieres dejar de usar.</p>
+  </div>
+  <div class="wrap">
+    <form class="filters" data-filters hidden role="search">
+      <div>
+        <label for="q">Buscar</label>
+        <input id="q" name="q" type="search" placeholder="Google Drive, repositorio, AGPL" autocomplete="off" />
+      </div>
+      <div>
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria">
+          <option value="">Todas</option>
+          {orderedCategories.map((c) => <option value={c}>{c}</option>)}
+        </select>
+      </div>
+      <fieldset>
+        <legend class="visually-hidden">Otros filtros</legend>
+        <label><input type="checkbox" name="autoalojable" /> Autoalojable</label>
+        <label><input type="checkbox" name="social" /> Economía social</label>
+      </fieldset>
+    </form>
+    <p class="filter-status" data-status role="status">{plural(apps.length)}</p>
+    <div class="empty-state" data-empty hidden>
+      <p data-empty-term></p>
+      <p>Prueba con otro nombre o quita un filtro. Si falta un programa, <a href="/contribuir/">propónlo</a>.</p>
+    </div>
+    <ul class="app-list">
+      {apps.map((app) => <AppRow app={app} searchable headingLevel="h2" />)}
+    </ul>
+  </div>
+  <script is:inline src="/filtro.js" defer></script>
+</Base>

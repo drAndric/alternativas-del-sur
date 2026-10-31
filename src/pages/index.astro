@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import AppRow from '../components/AppRow.astro';
+import Picto from '../components/Picto.astro';
+import { categoryMeta, getApps, getReplacements, plural } from '../lib/apps';
+
+const apps = await getApps();
+const replacements = await getReplacements();
+const universityCount = apps.filter((a) => a.data.university).length;
+const featured = apps.filter((a) => a.data.featured);
+const count = (category: keyof typeof categoryMeta) => apps.filter((a) => a.data.category === category).length;
+
+const cells = [
+  { cls: 'c-dis', name: 'Diseño' },
+  { cls: 'c-des', name: 'Desarrollo' },
+  { cls: 'c-pro', name: 'Productividad' },
+  { cls: 'c-pri', name: 'Privacidad y Seguridad' },
+  { cls: 'c-col', name: 'Colaboración y Cooperativas' },
+  { cls: 'c-edu', name: 'Educación e Investigación' },
+] as const;
+---
+
+<Base>
+  <section class="hero">
+    <h1>Software libre para dejar de pagar con tus datos</h1>
+    <p class="hero__lead">
+      Un directorio de programas abiertos y de la infraestructura que una universidad puede gobernar por su cuenta. Cada ficha dice qué reemplaza, quién lo controla y qué conviene tener en cuenta.
+    </p>
+    <form class="search" action="/directorio/" method="get" role="search">
+      <label for="busqueda">¿Qué quieres reemplazar?</label>
+      <div class="search__row">
+        <input id="busqueda" type="search" name="q" placeholder="Zoom, Photoshop" autocomplete="off" />
+        <button class="button" type="submit">Buscar</button>
+      </div>
+    </form>
+  </section>
+
+  <nav aria-label="Secciones del directorio">
+    <ul class="compartimentos">
+      <li class="c-uni">
+        <a class="compartimento" href="/universidades/">
+          <Picto name="universidad" />
+          <div>
+            <strong>Infraestructura para universidades</strong>
+            <span>{plural(universityCount)} para aulas, revistas, repositorios, bibliotecas y servicios del campus.</span>
+          </div>
+        </a>
+      </li>
+      {cells.map(({ cls, name }) => (
+        <li class={cls}>
+          <a class="compartimento" href={`/categoria/${categoryMeta[name].slug}/`}>
+            <Picto name={categoryMeta[name].picto} />
+            <div>
+              <strong>{name}</strong>
+              <span>{plural(count(name))}</span>
+            </div>
+          </a>
+        </li>
+      ))}
+      <li class="c-alt">
+        <a class="compartimento" href="/alternativas-a/">
+          <Picto name="cambio" />
+          <div>
+            <strong>Alternativas a lo que ya usas</strong>
+            <span>{replacements.length} programas privativos con opciones abiertas</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <section class="section wrap" aria-labelledby="empieza">
+    <div class="section-head">
+      <h2 id="empieza">Empieza por lo que ya usas</h2>
+      <a href="/alternativas-a/">Ver todos</a>
+    </div>
+    <ul class="chips">
+      {replacements.slice(0, 14).map((r) => (
+        <li><a href={`/alternativas-a/${r.slug}/`}>{r.name} <small>({r.apps.length})</small></a></li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section wrap" aria-labelledby="destacados">
+    <div class="section-head">
+      <h2 id="destacados">Programas destacados</h2>
+      <a href="/directorio/">Ver los {apps.length} programas</a>
+    </div>
+    <ul class="app-list">
+      {featured.map((app) => <AppRow app={app} />)}
+    </ul>
+  </section>
+</Base>

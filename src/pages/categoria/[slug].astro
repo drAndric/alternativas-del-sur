@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppRow from '../../components/AppRow.astro';
+import { categoryMeta, getApps, orderedCategories, type App } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const apps = await getApps();
+  return orderedCategories.map((name) => ({
+    params: { slug: categoryMeta[name].slug },
+    props: { name, apps: apps.filter((a) => a.data.category === name) },
+  }));
+}
+
+const { name, apps } = Astro.props as { name: (typeof orderedCategories)[number]; apps: App[] };
+---
+
+<Base title={name} description={categoryMeta[name].summary}>
+  <div class="page-head">
+    <h1>{name}</h1>
+    <p>{categoryMeta[name].summary}</p>
+  </div>
+  <div class="wrap">
+    <ul class="app-list">
+      {apps.map((app) => <AppRow app={app} headingLevel="h2" />)}
+    </ul>
+  </div>
+</Base>

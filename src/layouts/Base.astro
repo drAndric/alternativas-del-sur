@@ -1,0 +1,85 @@
+---
+import '@fontsource-variable/piazzolla/wght.css';
+import '@fontsource/alegreya-sans/400.css';
+import '@fontsource/alegreya-sans/400-italic.css';
+import '@fontsource/alegreya-sans/700.css';
+import '@fontsource/alegreya-sans/800.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const siteName = 'Alternativas del Sur';
+const {
+  title,
+  description = 'Directorio de software libre e infraestructura abierta, con una sección dedicada a universidades. Cada ficha dice qué reemplaza, quién lo controla y qué tener en cuenta.',
+} = Astro.props;
+const fullTitle = title ? `${title} | ${siteName}` : siteName;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const path = Astro.url.pathname;
+const nav = [
+  { href: '/directorio/', label: 'Directorio' },
+  { href: '/universidades/', label: 'Universidades' },
+  { href: '/alternativas-a/', label: 'Alternativas a…' },
+  { href: '/criterios/', label: 'Criterios' },
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_419" />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2 26 30 16 23 6 30Z" fill="currentColor" /></svg>
+        <span>Alternativas del Sur</span>
+      </a>
+      <nav aria-label="Principal">
+        <ul>
+          {nav.map((item) => (
+            <li>
+              <a href={item.href} aria-current={path.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main id="contenido">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p class="site-footer__motto">
+        «Nuestro norte es el Sur.»
+        <span>Joaquín Torres-García</span>
+      </p>
+      <ul>
+        <li><a href="/criterios/">Criterios de inclusión</a></li>
+        <li><a href="/contribuir/">Proponer un programa</a></li>
+        <li><a href="https://github.com/drAndric/alternativas-del-sur">Código del sitio</a></li>
+      </ul>
+      <p class="site-footer__privacy">
+        Este sitio no usa cookies ni analítica. Código bajo
+        <a href="https://github.com/drAndric/alternativas-del-sur/blob/main/LICENSE">AGPL-3.0</a>; contenido bajo
+        <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" rel="license">CC BY-SA 4.0</a>.
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import AppRow from '../../components/AppRow.astro';
+import { getReplacements, plural, type App } from '../../lib/apps';
+
+export async function getStaticPaths() {
+  const replacements = await getReplacements();
+  return replacements.map((r) => ({ params: { slug: r.slug }, props: { name: r.name, apps: r.apps } }));
+}
+
+const { name, apps } = Astro.props as { name: string; apps: App[] };
+---
+
+<Base title={`Alternativas abiertas a ${name}`} description={`${plural(apps.length)} libres para reemplazar ${name}: ${apps.map((a) => a.data.title).join(', ')}.`}>
+  <div class="page-head">
+    <h1>Alternativas a {name}</h1>
+    <p>{plural(apps.length)} del directorio {apps.length === 1 ? 'cubre' : 'cubren'} necesidades parecidas. Revisa en cada ficha qué funciones cambian antes de migrar.</p>
+  </div>
+  <div class="wrap">
+    <ul class="app-list">
+      {apps.map((app) => <AppRow app={app} headingLevel="h2" />)}
+    </ul>
+  </div>
+</Base>
