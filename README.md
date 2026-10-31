@@ -4,7 +4,7 @@ Directorio de software libre e infraestructura abierta, sin extractivismo ni pr�
 
 ## Desarrollo
 
-Requiere Node 22.23.1 (ver `.node-version`). Astro está fijado en 7.4.1 porque las versiones 7.4.2 y posteriores exigen Node 22.23.4 o superior; al actualizar Node, actualiza también `.node-version` y Astro.
+Requiere Node 22.23.1 (ver `.node-version`). Astro está fijado en 7.4.1 porque las versiones 7.4.2 y posteriores exigen Node 22.23.4 o superior; al actualizar Node, actualizá también `.node-version` y Astro.
 
 ```sh
 npm install
@@ -27,7 +27,7 @@ Los criterios editoriales se publican en `/criterios/`.
 
 ## Despliegue en Cloudflare Pages
 
-Conecta este repositorio en Cloudflare Pages con:
+Conectá este repositorio en Cloudflare Pages con:
 
 | Ajuste | Valor |
 | --- | --- |
@@ -36,7 +36,7 @@ Conecta este repositorio en Cloudflare Pages con:
 | Versión de Node | la toma de `.node-version` |
 | Dominio personalizado | `alternativas.desdeelsur.org` |
 
-Las cabeceras de seguridad están en `public/_headers`. Si activas Cloudflare Web Analytics, inyectará un script externo y dejará de ser cierto lo que dice `/criterios/`.
+Las cabeceras de seguridad están en `public/_headers`. Si activás Cloudflare Web Analytics, inyectará un script externo y dejará de ser cierto lo que dice `/criterios/`.
 
 ## Licencias
 

@@ -18,8 +18,8 @@ export const serviceKinds = {
   Traducción: 'Traducción automática sin enviar tus textos a un gran proveedor.',
   'Plataforma de video': 'Publica y aloja videos: reemplaza a la plataforma.',
   'Cliente para ver YouTube': 'Permite ver YouTube con menos rastreo, pero el contenido sigue estando allí.',
-  'Formularios y encuestas': 'Recoge respuestas con los datos bajo tu control.',
-  'Móvil sin Google': 'Para usar un teléfono con menos dependencia de los servicios de Google.',
+  'Formularios y encuestas': 'Recopila respuestas con los datos bajo tu control.',
+  'Celular sin Google': 'Para usar un teléfono con menos dependencia de los servicios de Google.',
 } as const;
 
 export const directoryGroups = {

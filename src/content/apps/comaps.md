@@ -1,6 +1,6 @@
 ---
 title: "CoMaps"
-description: "Mapas y navegación sin conexión para móvil, en una bifurcación comunitaria de Organic Maps."
+description: "Mapas y navegación sin conexión para celular, en una bifurcación comunitaria de Organic Maps."
 category: "Servicios de Internet"
 kind: "Mapas"
 license: "Apache-2.0"

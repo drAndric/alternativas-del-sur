@@ -10,7 +10,7 @@ tryUrl: "https://searx.space"
 alternativeTo: ["Google Search","Microsoft Bing"]
 governance: "Comunidad"
 selfHostable: true
-watchOut: "En una instancia pública, quien la administra podría ver tus búsquedas. Elige una de confianza o instala la tuya."
+watchOut: "En una instancia pública, quien la administra podría ver tus búsquedas. Elegí una de confianza o instalá la tuya."
 revenueSharing: false
 featured: true
 dateAdded: 2026-10-31

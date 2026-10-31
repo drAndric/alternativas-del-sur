@@ -2,13 +2,13 @@
 import Base from '../../layouts/Base.astro';
 import { getReplacements } from '../../lib/apps';
 
-const replacements = (await getReplacements()).sort((a, b) => a.name.localeCompare(b.name, 'es'));
+const replacements = (await getReplacements()).sort((a, b) => a.name.localeCompare(b.name, 'es-AR'));
 ---
 
-<Base title="Alternativas a programas privativos" description="Encuentra opciones abiertas para los programas y servicios privativos que usas hoy.">
+<Base title="Alternativas a programas privativos" description="Encontrá opciones abiertas para los programas y servicios privativos que usás hoy.">
   <div class="page-head">
-    <h1>Alternativas a lo que ya usas</h1>
-    <p>Elige el programa o servicio que quieres dejar. Cada página reúne las opciones abiertas del directorio.</p>
+    <h1>Alternativas a lo que ya usás</h1>
+    <p>Elegí el programa o servicio que querés dejar. Cada página reúne las opciones abiertas del directorio.</p>
   </div>
   <div class="wrap">
     <ul class="replace-index">

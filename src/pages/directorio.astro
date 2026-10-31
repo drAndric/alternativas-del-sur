@@ -6,10 +6,10 @@ import { getApps, orderedCategories, plural } from '../lib/apps';
 const apps = await getApps();
 ---
 
-<Base title="Directorio" description={`Busca entre ${apps.length} programas libres por nombre, categoría o por el programa privativo que quieres reemplazar.`}>
+<Base title="Directorio" description={`Buscá entre ${apps.length} programas libres por nombre, categoría o por el programa privativo que querés reemplazar.`}>
   <div class="page-head">
     <h1>Directorio</h1>
-    <p>Busca por nombre o por el programa que quieres dejar de usar.</p>
+    <p>Buscá por nombre o por el programa que querés dejar de usar.</p>
   </div>
   <div class="wrap">
     <form class="filters" data-filters hidden role="search">
@@ -33,7 +33,7 @@ const apps = await getApps();
     <p class="filter-status" data-status role="status">{plural(apps.length)}</p>
     <div class="empty-state" data-empty hidden>
       <p data-empty-term></p>
-      <p>Prueba con otro nombre o quita un filtro. Si falta un programa, <a href="/contribuir/">propónlo</a>.</p>
+      <p>Probá con otro nombre o sacá un filtro. Si falta un programa, <a href="/contribuir/">proponelo</a>.</p>
     </div>
     <ul class="app-list">
       {apps.map((app) => <AppRow app={app} searchable headingLevel="h2" />)}

@@ -9,7 +9,7 @@ repoUrl: "https://github.com/yacy/yacy_search_server"
 alternativeTo: ["Google Search","Microsoft Bing"]
 governance: "Comunidad"
 selfHostable: true
-watchOut: "Necesitas instalarlo, y sus resultados dependen de lo que haya indexado la red."
+watchOut: "Necesitás instalarlo, y sus resultados dependen de lo que haya indexado la red."
 revenueSharing: false
 featured: false
 dateAdded: 2026-10-31

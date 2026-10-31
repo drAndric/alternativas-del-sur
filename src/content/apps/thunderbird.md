@@ -1,6 +1,6 @@
 ---
 title: "Thunderbird"
-description: "Cliente de correo, calendario y contactos para escritorio y móvil."
+description: "Cliente de correo, calendario y contactos para computadora y celular."
 category: "Productividad"
 license: "MPL-2.0"
 websiteUrl: "https://www.thunderbird.net"

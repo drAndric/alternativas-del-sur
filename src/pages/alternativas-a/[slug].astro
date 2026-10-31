@@ -16,7 +16,7 @@ const notes = replacementNotes[slug] ?? [];
 <Base title={`Alternativas abiertas a ${name}`} description={`${plural(apps.length)} libres para reemplazar ${name}: ${apps.map((a) => a.data.title).join(', ')}.`}>
   <div class="page-head">
     <h1>Alternativas a {name}</h1>
-    <p>{plural(apps.length)} del directorio {apps.length === 1 ? 'cubre' : 'cubren'} necesidades parecidas. Revisa en cada ficha qué funciones cambian antes de migrar.</p>
+    <p>{plural(apps.length)} del directorio {apps.length === 1 ? 'cubre' : 'cubren'} necesidades parecidas. Revisá en cada ficha qué funciones cambian antes de migrar.</p>
   </div>
   <div class="wrap">
     {notes.length > 0 && (

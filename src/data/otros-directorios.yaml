@@ -6,7 +6,7 @@
   group: Directorios generales
   language: Inglés
   description: El catálogo más amplio de reemplazos por programa, con filtros por licencia y plataforma.
-  watchOut: Mezcla software libre y privativo. Filtra por código abierto.
+  watchOut: Mezcla software libre y privativo. Filtrá por código abierto.
 - id: le-alternative
   title: Le Alternative
   url: https://lealternative.it/en/

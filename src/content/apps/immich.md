@@ -1,6 +1,6 @@
 ---
 title: "Immich"
-description: "Respaldo y galería de fotos y videos en un servidor propio, con apps móviles."
+description: "Respaldo y galería de fotos y videos en un servidor propio, con apps para celular."
 category: "Productividad"
 license: "AGPL-3.0"
 websiteUrl: "https://immich.app"

@@ -1,6 +1,6 @@
 ---
 title: "KeePassXC"
-description: "Gestor de contraseñas local: tu base de datos cifrada es un archivo que tú controlas."
+description: "Gestor de contraseñas local: tu base de datos cifrada es un archivo que controlás vos."
 category: "Privacidad y Seguridad"
 license: "GPL-2.0 o GPL-3.0"
 websiteUrl: "https://keepassxc.org"

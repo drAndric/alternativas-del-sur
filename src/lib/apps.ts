@@ -11,7 +11,7 @@ export const slugify = (text: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
-const collator = new Intl.Collator('es');
+const collator = new Intl.Collator('es-AR');
 
 export async function getApps() {
   const apps = await getCollection('apps');
@@ -69,7 +69,7 @@ export const categoryMeta: Record<Category, { slug: string; picto: string; summa
   'Servicios de Internet': {
     slug: 'servicios-de-internet',
     picto: 'servicios',
-    summary: 'Buscadores, navegadores, mapas, traducción, video, encuestas y móvil.',
+    summary: 'Buscadores, navegadores, mapas, traducción, video, encuestas y celulares.',
   },
 };
 
