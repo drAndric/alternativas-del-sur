@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { directoryGroups } from '../data/taxonomy';
+
+const directories = await getCollection('directories');
+const groups = (Object.keys(directoryGroups) as (keyof typeof directoryGroups)[]).map((title) => ({
+  title,
+  description: directoryGroups[title],
+  items: directories.filter((d) => d.data.group === title),
+}));
+---
+
+<Base title="Otros directorios" description="Otros sitios, listas awesome de GitHub y proveedores comunitarios para encontrar alternativas abiertas.">
+  <div class="page-head">
+    <h1>Otros directorios</h1>
+    <p>
+      Si aquí no está lo que buscas, estos sitios y listas pueden ayudarte. Cada uno aplica sus propios criterios, así que indicamos cuándo incluyen opciones privativas.
+    </p>
+  </div>
+  <div class="wrap">
+    <aside class="callout page-note">
+      <p>
+        La mayoría están en inglés. No encontramos un directorio activo y amplio en español: si conoces uno, <a href="/contribuir/">propónlo</a>.
+      </p>
+    </aside>
+    {groups.map((group) => (
+      <section class="kind-group">
+        <h2>{group.title}</h2>
+        <p>{group.description}</p>
+        <ul class="app-list">
+          {group.items.map(({ data: d }) => (
+            <li class="app-row">
+              <div class="app-row__main">
+                <h3 class="app-row__title"><a href={d.url}>{d.title}</a></h3>
+                <p>{d.description}</p>
+                {d.watchOut && <p class="dir-note">{d.watchOut}</p>}
+              </div>
+              <div class="app-row__replaces">
+                <span class="field-label">Idioma</span>
+                <p>{d.language}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Base>

@@ -1,0 +1,26 @@
+---
+import AppRow from './AppRow.astro';
+import { groupByKind, type App } from '../lib/apps';
+
+interface Props {
+  apps: App[];
+}
+const { apps } = Astro.props;
+const groups = groupByKind(apps);
+---
+
+{groups ? (
+  groups.map((group) => (
+    <section class="kind-group">
+      <h2>{group.title}</h2>
+      {group.description && <p>{group.description}</p>}
+      <ul class="app-list">
+        {group.apps.map((app) => <AppRow app={app} />)}
+      </ul>
+    </section>
+  ))
+) : (
+  <ul class="app-list">
+    {apps.map((app) => <AppRow app={app} headingLevel="h2" />)}
+  </ul>
+)}

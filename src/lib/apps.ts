@@ -1,5 +1,5 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { categories, type Category } from '../data/taxonomy';
+import { categories, serviceKinds, type Category } from '../data/taxonomy';
 
 export type App = CollectionEntry<'apps'>;
 
@@ -65,7 +65,28 @@ export const categoryMeta: Record<Category, { slug: string; picto: string; summa
     picto: 'educacion',
     summary: 'Aulas, revistas, repositorios, bibliotecas y herramientas para investigar.',
   },
+
+  'Servicios de Internet': {
+    slug: 'servicios-de-internet',
+    picto: 'servicios',
+    summary: 'Buscadores, navegadores, mapas, traducción, video, encuestas y móvil.',
+  },
 };
+
+/** Agrupa por tipo cuando hay dos o más; si no, conviene una lista simple. */
+export function groupByKind(apps: App[]) {
+  const kinds = Object.keys(serviceKinds) as (keyof typeof serviceKinds)[];
+  const present = kinds.filter((kind) => apps.some((a) => a.data.kind === kind));
+  if (present.length < 2) return null;
+  const groups: { title: string; description?: string; apps: App[] }[] = present.map((kind) => ({
+    title: kind,
+    description: serviceKinds[kind],
+    apps: apps.filter((a) => a.data.kind === kind),
+  }));
+  const rest = apps.filter((a) => !a.data.kind);
+  if (rest.length > 0) groups.push({ title: 'Otras opciones', apps: rest });
+  return groups;
+}
 
 export const orderedCategories = categories;
 export const plural = (n: number) => `${n} ${n === 1 ? 'programa' : 'programas'}`;

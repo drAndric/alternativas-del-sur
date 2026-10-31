@@ -441,7 +441,9 @@ pre {
 .c-pri { grid-column: 5 / span 2; }
 .c-col { grid-column: 1 / span 2; }
 .c-edu { grid-column: 3 / span 2; }
-.c-alt { grid-column: 5 / span 2; }
+.c-ser { grid-column: 5 / span 2; }
+.c-alt { grid-column: 1 / span 3; }
+.c-fue { grid-column: 4 / span 3; }
 
 .c-uni .compartimento { --cell-bg: var(--anil); --cell-fg: #fff; padding: clamp(1.25rem, 3vw, 2.25rem); }
 .c-uni .compartimento strong { font-size: clamp(2.25rem, 4.6vw, 4.25rem); font-weight: 800; letter-spacing: -0.015em; }
@@ -453,6 +455,7 @@ pre {
 .c-col .compartimento { --cell-bg: #dfe3f3; }
 .c-edu .compartimento { --cell-bg: var(--maiz); }
 .c-alt .compartimento { --cell-bg: var(--jade); --cell-fg: #fff; }
+.c-fue .compartimento { --cell-bg: #dfe3f3; }
 
 @media (max-width: 62rem) {
   .compartimentos {
@@ -464,7 +467,9 @@ pre {
     grid-row: auto;
   }
   .compartimentos > .c-uni,
-  .compartimentos > .c-alt {
+  .compartimentos > .c-ser,
+  .compartimentos > .c-alt,
+  .compartimentos > .c-fue {
     grid-column: 1 / -1;
   }
   .compartimento {
@@ -826,4 +831,31 @@ pre {
   .site-footer {
     grid-template-columns: 1fr;
   }
+}
+
+/* Grupos por tipo de servicio */
+.kind-group + .kind-group {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.kind-group > h2 {
+  margin-bottom: 0.4rem;
+}
+
+.kind-group > p {
+  max-width: 62ch;
+  margin-bottom: 1rem;
+}
+
+.page-note {
+  margin-bottom: 2rem;
+}
+
+.page-note p + p {
+  margin-top: 0.6rem;
+}
+
+.dir-note {
+  margin-top: 0.35rem;
+  color: var(--muted);
 }

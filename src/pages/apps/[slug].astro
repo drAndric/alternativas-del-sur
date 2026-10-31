@@ -22,6 +22,7 @@ const related = apps.filter((a) => a.data.category === d.category && a.id !== ap
     <div class="detail-actions">
       <a class="button" href={d.websiteUrl}>Visitar el sitio</a>
       <a class="button button--ghost" href={d.repoUrl}>Ver el código</a>
+      {d.tryUrl && <a class="button button--ghost" href={d.tryUrl}>Usar sin instalar</a>}
     </div>
   </div>
   <div class="wrap detail-grid">
@@ -55,6 +56,7 @@ const related = apps.filter((a) => a.data.category === d.category && a.id !== ap
     </div>
     <dl class="facts">
       <div><dt>Licencia</dt><dd>{d.license}</dd></div>
+      {d.kind && <div><dt>Tipo</dt><dd>{d.kind}</dd></div>}
       <div><dt>Quién lo controla</dt><dd>{d.governance}</dd></div>
       <div><dt>Categoría</dt><dd><a href={`/categoria/${categoryMeta[d.category].slug}/`}>{d.category}</a></dd></div>
       <div><dt>Servidor propio</dt><dd>{d.selfHostable ? 'Se puede instalar en un servidor propio' : 'No aplica o no es su uso principal'}</dd></div>

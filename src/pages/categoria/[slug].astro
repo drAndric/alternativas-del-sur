@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AppRow from '../../components/AppRow.astro';
+import AppGroups from '../../components/AppGroups.astro';
 import { categoryMeta, getApps, orderedCategories, type App } from '../../lib/apps';
 
 export async function getStaticPaths() {
@@ -20,8 +20,6 @@ const { name, apps } = Astro.props as { name: (typeof orderedCategories)[number]
     <p>{categoryMeta[name].summary}</p>
   </div>
   <div class="wrap">
-    <ul class="app-list">
-      {apps.map((app) => <AppRow app={app} headingLevel="h2" />)}
-    </ul>
+    <AppGroups apps={apps} />
   </div>
 </Base>

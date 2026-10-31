@@ -2,9 +2,11 @@
 import Base from '../layouts/Base.astro';
 import AppRow from '../components/AppRow.astro';
 import Picto from '../components/Picto.astro';
+import { getCollection } from 'astro:content';
 import { categoryMeta, getApps, getReplacements, plural } from '../lib/apps';
 
 const apps = await getApps();
+const directories = await getCollection('directories');
 const replacements = await getReplacements();
 const universityCount = apps.filter((a) => a.data.university).length;
 const featured = apps.filter((a) => a.data.featured);
@@ -17,6 +19,7 @@ const cells = [
   { cls: 'c-pri', name: 'Privacidad y Seguridad' },
   { cls: 'c-col', name: 'Colaboración y Cooperativas' },
   { cls: 'c-edu', name: 'Educación e Investigación' },
+  { cls: 'c-ser', name: 'Servicios de Internet' },
 ] as const;
 ---
 
@@ -29,7 +32,7 @@ const cells = [
     <form class="search" action="/directorio/" method="get" role="search">
       <label for="busqueda">¿Qué quieres reemplazar?</label>
       <div class="search__row">
-        <input id="busqueda" type="search" name="q" placeholder="Zoom, Photoshop" autocomplete="off" />
+        <input id="busqueda" type="search" name="q" placeholder="Google, Zoom, Photoshop" autocomplete="off" />
         <button class="button" type="submit">Buscar</button>
       </div>
     </form>
@@ -63,6 +66,15 @@ const cells = [
           <div>
             <strong>Alternativas a lo que ya usas</strong>
             <span>{replacements.length} programas privativos con opciones abiertas</span>
+          </div>
+        </a>
+      </li>
+      <li class="c-fue">
+        <a class="compartimento" href="/otros-directorios/">
+          <Picto name="directorios" />
+          <div>
+            <strong>Otros directorios</strong>
+            <span>{directories.length} sitios y listas awesome donde buscar más</span>
           </div>
         </a>
       </li>

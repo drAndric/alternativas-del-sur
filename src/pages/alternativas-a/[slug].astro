@@ -1,14 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import AppRow from '../../components/AppRow.astro';
+import AppGroups from '../../components/AppGroups.astro';
+import { replacementNotes } from '../../data/notas-alternativas';
 import { getReplacements, plural, type App } from '../../lib/apps';
 
 export async function getStaticPaths() {
   const replacements = await getReplacements();
-  return replacements.map((r) => ({ params: { slug: r.slug }, props: { name: r.name, apps: r.apps } }));
+  return replacements.map((r) => ({ params: { slug: r.slug }, props: { name: r.name, apps: r.apps, slug: r.slug } }));
 }
 
-const { name, apps } = Astro.props as { name: string; apps: App[] };
+const { name, apps, slug } = Astro.props as { name: string; apps: App[]; slug: string };
+const notes = replacementNotes[slug] ?? [];
 ---
 
 <Base title={`Alternativas abiertas a ${name}`} description={`${plural(apps.length)} libres para reemplazar ${name}: ${apps.map((a) => a.data.title).join(', ')}.`}>
@@ -17,8 +19,11 @@ const { name, apps } = Astro.props as { name: string; apps: App[] };
     <p>{plural(apps.length)} del directorio {apps.length === 1 ? 'cubre' : 'cubren'} necesidades parecidas. Revisa en cada ficha qué funciones cambian antes de migrar.</p>
   </div>
   <div class="wrap">
-    <ul class="app-list">
-      {apps.map((app) => <AppRow app={app} headingLevel="h2" />)}
-    </ul>
+    {notes.length > 0 && (
+      <aside class="callout page-note">
+        {notes.map((note) => <p>{note}</p>)}
+      </aside>
+    )}
+    <AppGroups apps={apps} />
   </div>
 </Base>

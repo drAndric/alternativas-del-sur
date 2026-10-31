@@ -10,7 +10,7 @@ interface Props {
 }
 const { app, note, searchable = false, headingLevel: Heading = 'h3' } = Astro.props;
 const d = app.data;
-const search = [d.title, d.description, d.category, d.license, d.alternativeTo.join(' ')].join(' ');
+const search = [d.title, d.description, d.category, d.kind ?? '', d.license, d.alternativeTo.join(' ')].join(' ');
 ---
 
 <li

@@ -1,0 +1,170 @@
+# Otros sitios donde buscar alternativas.
+# group debe coincidir con directoryGroups en src/data/taxonomy.ts.
+- id: alternativeto
+  title: AlternativeTo
+  url: https://alternativeto.net
+  group: Directorios generales
+  language: Inglés
+  description: El catálogo más amplio de reemplazos por programa, con filtros por licencia y plataforma.
+  watchOut: Mezcla software libre y privativo. Filtra por código abierto.
+- id: le-alternative
+  title: Le Alternative
+  url: https://lealternative.it/en/
+  group: Directorios generales
+  language: Italiano e inglés
+  description: Guías de alternativas a servicios concretos, como el buscador, el correo o los mapas de Google.
+  watchOut: También recomienda servicios que no son de código abierto.
+- id: gofoss
+  title: GoFOSS
+  url: https://gofoss.net
+  group: Directorios generales
+  language: Inglés
+  description: Guías para dejar servicios privativos y migrar paso a paso a software libre.
+- id: switching-software
+  title: switching.software
+  url: https://switching.software
+  group: Directorios generales
+  language: Inglés
+  description: Alternativas éticas y fáciles de usar a programas muy conocidos.
+- id: open-source-alternative-to
+  title: Open Source Alternative To
+  url: https://www.opensourcealternative.to
+  group: Directorios generales
+  language: Inglés
+  description: Directorio de reemplazos de código abierto para productos privativos, sobre todo servicios en la nube.
+- id: free-software-directory
+  title: Free Software Directory
+  url: https://directory.fsf.org
+  group: Directorios generales
+  language: Inglés
+  description: Catálogo de programas libres mantenido con la Free Software Foundation.
+- id: framalibre
+  title: Framalibre
+  url: https://framalibre.org
+  group: Directorios generales
+  language: Francés
+  description: Directorio de programas y recursos libres de la asociación francesa Framasoft.
+- id: european-alternatives
+  title: European Alternatives
+  url: https://european-alternatives.eu
+  group: Directorios generales
+  language: Inglés
+  description: Servicios digitales y en la nube con sede en Europa.
+  watchOut: Su criterio es el origen europeo, no el código abierto. Muchas opciones son privativas.
+
+- id: awesome-foss-alternatives
+  title: Awesome FOSS Alternatives
+  url: https://github.com/sfermigier/awesome-foss-alternatives
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Alternativas libres a productos SaaS habituales, orientadas al uso en organizaciones.
+- id: awesome-open-source-alternatives
+  title: Awesome Open Source Alternatives
+  url: https://github.com/diegoleme/awesome-open-source-alternatives
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Lista curada de alternativas de código abierto a productos privativos.
+- id: awesome-selfhosted
+  title: Awesome-Selfhosted
+  url: https://awesome-selfhosted.net
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: La lista de referencia de servicios libres para instalar en un servidor propio.
+- id: awesome-sysadmin
+  title: Awesome Sysadmin
+  url: https://github.com/awesome-foss/awesome-sysadmin
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Herramientas de código abierto para administrar sistemas e infraestructura.
+- id: android-foss
+  title: Android FOSS
+  url: https://github.com/offa/android-foss
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Aplicaciones libres para Android, ordenadas por tipo.
+- id: awesome-privacy-lissy93
+  title: Awesome Privacy
+  url: https://awesome-privacy.xyz
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Software y servicios centrados en la privacidad, con versión web y buscador.
+  watchOut: Prioriza la privacidad, así que no todo lo que incluye es de código abierto.
+- id: awesome-privacy-pluja
+  title: Awesome Privacy (pluja)
+  url: https://github.com/pluja/awesome-privacy
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: Otra lista de servicios y alternativas que respetan la privacidad.
+  watchOut: Prioriza la privacidad, así que no todo lo que incluye es de código abierto.
+- id: awesome
+  title: Awesome
+  url: https://github.com/sindresorhus/awesome
+  group: Listas awesome en GitHub
+  language: Inglés
+  description: El índice general de listas awesome, útil para encontrar listas de cualquier tema.
+  watchOut: Abarca mucho más que software libre.
+
+- id: privacy-guides
+  title: Privacy Guides
+  url: https://www.privacyguides.org/es/
+  group: Privacidad
+  language: Español e inglés
+  description: Recomendaciones y guías de una organización sin fines de lucro para proteger tu vida digital.
+  watchOut: Su criterio central es la privacidad, así que no todo lo que recomienda es de código abierto.
+- id: prism-break
+  title: PRISM Break
+  url: https://prism-break.org/es/
+  group: Privacidad
+  language: Español e inglés
+  description: Alternativas libres por sistema operativo y por tipo de servicio para reducir la exposición a la vigilancia masiva.
+
+- id: disroot
+  title: Disroot
+  url: https://disroot.org
+  group: Proveedores comunitarios
+  language: Inglés
+  description: Correo, nube, chat y otros servicios libres operados por una organización sin fines de lucro.
+- id: riseup
+  title: Riseup
+  url: https://riseup.net/es
+  group: Proveedores comunitarios
+  language: Español e inglés
+  description: Correo y herramientas de comunicación para activistas y movimientos sociales.
+  watchOut: Las cuentas de correo requieren invitación.
+- id: chatons
+  title: CHATONS
+  url: https://www.chatons.org
+  group: Proveedores comunitarios
+  language: Francés e inglés
+  description: Red de proveedores independientes de servicios libres, con un compromiso común de transparencia.
+- id: framasoft
+  title: Framasoft
+  url: https://framasoft.org
+  group: Proveedores comunitarios
+  language: Francés
+  description: Asociación francesa que ofrece y desarrolla servicios libres, como PeerTube.
+
+- id: infra-finder
+  title: Infra Finder
+  url: https://infrafinder.investinopen.org
+  group: Universidades e infraestructura académica
+  language: Inglés
+  description: Busca y compara infraestructura abierta para la investigación y la publicación académica.
+- id: posi
+  title: Principles of Open Scholarly Infrastructure
+  url: https://openscholarlyinfrastructure.org
+  group: Universidades e infraestructura académica
+  language: Inglés
+  description: Principios y autoevaluaciones públicas para juzgar la gobernanza de cada infraestructura.
+- id: scoss
+  title: SCOSS
+  url: https://scoss.org
+  group: Universidades e infraestructura académica
+  language: Inglés
+  description: Coalición que canaliza fondos institucionales hacia servicios de ciencia abierta que lo necesitan.
+- id: awesome-open-science-software
+  title: Awesome Open Science Software
+  url: https://github.com/ASSERT-KTH/awesome-open-science-software
+  group: Universidades e infraestructura académica
+  language: Inglés
+  description: Lista de recursos sobre ciencia abierta aplicada al software y a la ciencia computacional.

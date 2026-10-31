@@ -14,5 +14,7 @@ const { name, class: className } = Astro.props;
   {name === 'colaboracion' && (<><circle cx="32" cy="22" r="14" /><circle cx="22" cy="42" r="14" /><circle cx="42" cy="42" r="14" /></>)}
   {name === 'educacion' && (<path d="M32 16C24 9 14 9 6 11v40c8-2 18-2 26 5 8-7 18-7 26-5V11c-8-2-18-2-26 5ZM32 16v40" />)}
   {name === 'universidad' && (<path d="M32 6 6 24h52ZM10 56h44M6 24v0M15 24v32M26 24v32M38 24v32M49 24v32" />)}
+  {name === 'servicios' && (<><circle cx="27" cy="27" r="19" /><path d="M41 41 58 58" /></>)}
+  {name === 'directorios' && (<path d="M8 12h48v12H8ZM8 26h48v12H8ZM8 40h48v12H8ZM16 12v12M16 26v12M16 40v12" />)}
   {name === 'cambio' && (<path d="M6 22h46M40 10l12 12-12 12M58 42H12M24 30 12 42l12 12" />)}
 </svg>

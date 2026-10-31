@@ -1,7 +1,9 @@
 import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { categories, governanceTypes, universityAreas } from './data/taxonomy';
+import { file, glob } from 'astro/loaders';
+import { categories, directoryGroups, governanceTypes, serviceKinds, universityAreas } from './data/taxonomy';
+
+const keys = <T extends string>(o: Record<T, unknown>) => Object.keys(o) as [T, ...T[]];
 
 const appsCollection = defineCollection({
   // Lee todos los archivos .md dentro de la carpeta src/content/apps/
@@ -10,9 +12,13 @@ const appsCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     category: z.enum(categories),
+    // Tipo dentro de un servicio (p. ej. metabuscador); agrupa las listas
+    kind: z.enum(keys(serviceKinds)).optional(),
     license: z.string(), // Ej: "AGPL-3.0", "MIT", "MPL-2.0"
     websiteUrl: z.url(),
     repoUrl: z.url(),
+    // Dónde usarlo sin instalar, como una lista de instancias públicas
+    tryUrl: z.url().optional(),
     // Programas privativos que reemplaza; genera las páginas /alternativas-a/
     alternativeTo: z.array(z.string()).default([]),
     // Quién controla el proyecto: la licencia sola no cuenta toda la historia
@@ -34,6 +40,20 @@ const appsCollection = defineCollection({
   }),
 });
 
+// Otros sitios donde buscar alternativas: /otros-directorios/
+const directoriesCollection = defineCollection({
+  loader: file('src/data/otros-directorios.yaml'),
+  schema: z.object({
+    title: z.string(),
+    url: z.url(),
+    group: z.enum(keys(directoryGroups)),
+    language: z.string(),
+    description: z.string(),
+    watchOut: z.string().optional(),
+  }),
+});
+
 export const collections = {
   apps: appsCollection,
+  directories: directoriesCollection,
 };

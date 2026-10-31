@@ -19,6 +19,9 @@ Cada programa es un archivo Markdown en `src/content/apps/`. El esquema está en
 
 - Una ficha con el campo `university` aparece también en `/universidades/`.
 - Los nombres de `alternativeTo` generan las páginas `/alternativas-a/<nombre>/`.
+- El campo `kind` agrupa las opciones por tipo, como metabuscador o buscador con índice propio.
+- Los otros directorios y listas awesome de `/otros-directorios/` están en `src/data/otros-directorios.yaml`.
+- Las notas editoriales de una página de `/alternativas-a/` están en `src/data/notas-alternativas.ts`.
 
 Los criterios editoriales se publican en `/criterios/`.
 
